@@ -1,0 +1,240 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "Chef User Profile",
+      "description": "Authenticated chef or kitchen manager profile information shown in the app Settings.",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Firebase Auth UID of the profile owner."
+        },
+        "displayName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Full name or chef display name."
+        },
+        "role": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 60,
+          "description": "Culinary title or role (e.g., Executive Chef, Sous Chef)."
+        },
+        "restaurant": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 80,
+          "description": "Restaurant or kitchen property name."
+        },
+        "specialty": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 80,
+          "description": "Culinary specialty or station."
+        },
+        "yearsExperience": {
+          "type": "integer",
+          "description": "Years of professional kitchen experience (0-80)."
+        },
+        "bio": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 300,
+          "description": "Short professional biography."
+        },
+        "contactEmail": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 120,
+          "description": "Contact email address (PII, owner-only)."
+        },
+        "contactPhone": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 32,
+          "description": "Contact phone number (PII, owner-only)."
+        },
+        "authProvider": {
+          "type": "string",
+          "enum": ["google", "phone", "email"],
+          "description": "Authentication provider used to sign in."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the profile was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the profile was last updated."
+        }
+      },
+      "required": [
+        "uid",
+        "displayName",
+        "role",
+        "restaurant",
+        "specialty",
+        "yearsExperience",
+        "bio",
+        "contactEmail",
+        "contactPhone",
+        "authProvider",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Order": {
+      "title": "Customer Order",
+      "description": "Completed customer food and beverage order with payment metadata and fulfillment status.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Document ID matching the Firestore order key."
+        },
+        "orderNumber": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 24,
+          "description": "Human-readable order confirmation code (e.g. NALA-4821)."
+        },
+        "userId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9_\\-]+$",
+          "description": "Firebase Auth UID of the customer who placed the order."
+        },
+        "customerName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80,
+          "description": "Recipient name on the order."
+        },
+        "customerPhone": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 32,
+          "description": "Contact phone number for order updates."
+        },
+        "fulfillment": {
+          "type": "string",
+          "enum": ["dine-in", "collection", "delivery"],
+          "description": "How the guest receives the order."
+        },
+        "tableOrAddress": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 120,
+          "description": "Table number, pickup note, or street delivery address."
+        },
+        "notes": {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 200,
+          "description": "Optional dietary or kitchen preparation notes."
+        },
+        "paymentMethod": {
+          "type": "string",
+          "enum": ["card", "instant-eft", "cash-on-pickup"],
+          "description": "Payment method used at checkout."
+        },
+        "paymentLast4": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 16,
+          "description": "Masked card last-4 digits or payment reference label (never full PAN or CVV)."
+        },
+        "paymentStatus": {
+          "type": "string",
+          "enum": ["paid", "pending_collection"],
+          "description": "Whether payment settled online or is due on pickup/table."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["paid", "preparing", "ready", "completed"],
+          "description": "Current kitchen fulfillment status."
+        },
+        "items": {
+          "type": "array",
+          "description": "Bounded list (1-25) of ordered dish line items."
+        },
+        "subtotal": {
+          "type": "number",
+          "description": "Pre-fee sum of line items."
+        },
+        "serviceFee": {
+          "type": "number",
+          "description": "Platform/service fee applied to order."
+        },
+        "tip": {
+          "type": "number",
+          "description": "Optional kitchen/service gratuity."
+        },
+        "total": {
+          "type": "number",
+          "description": "Final order amount."
+        },
+        "createdAtMs": {
+          "type": "integer",
+          "description": "Epoch millisecond timestamp for client ordering."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the order was placed."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the order status last updated."
+        }
+      },
+      "required": [
+        "id",
+        "orderNumber",
+        "userId",
+        "customerName",
+        "customerPhone",
+        "fulfillment",
+        "tableOrAddress",
+        "notes",
+        "paymentMethod",
+        "paymentLast4",
+        "paymentStatus",
+        "status",
+        "items",
+        "subtotal",
+        "serviceFee",
+        "tip",
+        "total",
+        "createdAtMs",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserProfile"
+      },
+      "description": "Owner-only chef profile document containing personal and professional details for Settings."
+    },
+    "/orders/{orderId}": {
+      "schema": {
+        "$ref": "#/entities/Order"
+      },
+      "description": "Owner-scoped customer orders with itemized dishes, totals, masked payment status, and fulfillment progress."
+    }
+  }
+}
