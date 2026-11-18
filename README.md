@@ -13,18 +13,20 @@ The app is built with React, TypeScript, Vite, and Firebase. It runs in a web br
 | Module | MAST5112 — Portfolio of Evidence |
 | Repository | [44Xolo/NALA-ASSIGNMENT-1](https://github.com/44Xolo/NALA-ASSIGNMENT-1) |
 | Demo | [Watch the app demo](https://youtube.com/shorts/nESHh-IQ8Hs?feature=share) |
+| New | [Watch the new app demo] ([https://youtu.be/4jwUp33htws])|
 
 ## What you can do
 
-- Browse the dishes on the menu and open any item to see its description, prep time, and ingredients.
-- Search by dish name and filter the list by course.
-- Add available dishes to a cart straight from the menu cards or the dish detail screen, adjust quantities, and pick a tip.
-- Check out for dine-in, collection, or delivery and pay by card, instant EFT, or at the counter or table.
-- View digital receipts and follow order progress from confirmed to preparing, ready, and completed on the Orders tab.
-- Add and edit dishes, mark items available or unavailable, delete dishes with confirmation or undo, and restore the original sample menu.
-- Check menu totals, average prices, prices by course, availability figures, and the cheapest and most expensive dishes.
-- Log in or sign up with email and password, a phone number (SMS code), or Google.
-- View and edit your chef profile details (name, role, restaurant, specialty, years of experience, bio, and contact details) in Settings.
+- Look at the menu and click on any item to view a description, prep time and ingredients.
+- Search by name of dish and filter by course.
+- Place available dishes into a cart directly from the menu cards or the dish detail screen, make quantity changes and select a tip.
+- Check out for dine-in, collection or delivery and pay by card, instant EFT or at the counter or table.
+- Check the status of your orders, and track order progress from Confirmed to Preparing, Ready, and Completed on the Orders tab.
+- Add/Edit dishes, mark available or unavailable, delete dishes with confirmation/Undo, and restore original sample menu.
+- Look at the total amount of the menu, average prices, dish-to-dish prices, availability data, and cheapest and most expensive options.
+- Log in or register using email and password, a phone number (SMS code) or Google.
+- In Settings, you can view and edit your chef profile information (name, role, restaurant, specialty, years of experience, bio and contact details).
+  
 
 ## Run the app
 
@@ -74,12 +76,14 @@ Card payments at checkout are checked in the browser (Luhn number check, future 
 
 ## Known login issues
 
-The TypeScript check, Vite build, and test suite all pass, but the login and sign-up page still depends on manual settings in the Firebase console for project `lexical-silicon-jf900`:
+The TypeScript check, vite build and test suite are also all successful, but the login/sign-up page is still relying on manual configuration in the Firebase console for project lexical-silicon-jf900:
 
-- **Email/password and phone sign-in return `auth/operation-not-allowed`:** Only Google sign-in is turned on by default. Email/Password and Phone must be switched on manually under **Authentication → Sign-in method** in the Firebase console.
-- **Preview URLs can hit `auth/unauthorized-domain` or popup blocks:** Hosted preview domains (like `*.run.app`) must be added under **Authentication → Settings → Authorized domains** in the Firebase console, and browser popups must be allowed for Google sign-in.
-- **Email verification for cloud sync:** New email/password accounts must click the verification link sent to their inbox and press **I've verified** in Settings before Cloud Firestore will accept profile and order writes.
-- **Phone SMS codes:** Real SMS delivery needs Phone Auth quota or test phone numbers set up in Firebase, plus an authorized domain for reCAPTCHA.
+- **Email/password and phone sign-in return auth/operation-not-allowed:** Only Google sign-in is turned on by default. Email/Password and Phone must be switched on manually under **Authentication → Sign-in method** in the Firebase console.
+- **The following error codes may occur at the time of previewing a URL: auth/unauthorized-domain:** Hosted preview domains (such as *.run.app) need to be added under **Authentication → Settings → Authorized domains** in the Firebase console, and the browser popups for Google sign-in must be enabled.
+- **For cloud sync:** If a new email/password account is created, writes to profile and orders will not be accepted until they click the verification link sent to the inbox and press **I've verified** in Settings.
+- **Phone SMS codes:** Must have Phone Auth quota or test phone numbers configured in Firebase, and an authorized domain for reCAPTCHA.
+
+The TypeScript check, Vite build, and test suite all pass, but the login and sign-up page still depends on manual settings in the Firebase console for project `lexical-silicon-jf900`:
 
 ## Change log
 
@@ -111,4 +115,4 @@ These are the main changes made since Part 2:
 - Figma (n.d.) *Figma*. Available at: https://www.figma.com/ (Accessed: 12 October 2026).
 - Google (n.d.) *Material Design 3*. Available at: https://m3.material.io/ (Accessed: 12 October 2026).
 - React Native (n.d.) *Documentation*. Available at: https://reactnative.dev/docs/getting-started (Accessed: 12 October 2026).
-- Walker, J. R. (2021) *The Restaurant: From Concept to Operation*. 8th edn. Wiley.
+- Walker, J. R. (2021) *The Restaurant: From Concept to Operation*. 8th edn. Wiley.(Accessed: 18 November 2026)
